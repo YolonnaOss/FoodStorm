@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "335550258293",
+    "project_id": "foodstorm-2a96f",
+    "storage_bucket": "foodstorm-2a96f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:335550258293:android:1d63b4963f759f894e2c3c",
+        "android_client_info": {
+          "package_name": "com.example.foodstorm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "335550258293-rjsono68u8d6f854btnvphs79edv57tg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA2eGp9U9hV1aht_knGZr0KldB9R0cjxVs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "335550258293-rjsono68u8d6f854btnvphs79edv57tg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
