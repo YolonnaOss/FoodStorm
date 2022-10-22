@@ -1,12 +1,10 @@
 import 'dart:io';
-
-import 'package:foodstorm/widgets/grey_text_field_widget.dart';
-
 import '../generated/l10n.dart';
 import 'package:sizer/sizer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:foodstorm/helper/constants.dart';
+import 'package:foodstorm/widgets/grey_text_field_widget.dart';
 
 class AddPromotion extends StatefulWidget {
   const AddPromotion({Key? key}) : super(key: key);
@@ -25,8 +23,6 @@ class _AddPromotionState extends State<AddPromotion> {
   final placeStockFocusNode = FocusNode();
   final stockAnotationFocusNode = FocusNode();
   final startDateFocusNode = FocusNode();
-
-  // final endDate = TextEditingController();
 
   final String calendarSvg = 'assets/image/calendar.svg';
 

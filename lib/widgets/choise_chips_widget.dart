@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:foodstorm/helper/constants.dart';
 import 'package:foodstorm/helper/task_list.dart';
 import 'package:foodstorm/providers/main_page_provider.dart';
-import 'package:provider/provider.dart';
 
 class ChoiseChipsWidget extends StatefulWidget {
   const ChoiseChipsWidget({Key? key}) : super(key: key);
