@@ -11,7 +11,7 @@ import 'package:foodstorm/providers/app_bar_provider.dart';
 import 'package:foodstorm/providers/main_page_provider.dart';
 import 'package:foodstorm/screens/add_promotion_screen.dart';
 import 'package:foodstorm/providers/about_card_provider.dart';
-import 'package:foodstorm/providers/grid_screen_provider.dart';
+import 'package:foodstorm/providers/favorite_provider.dart';
 import 'package:foodstorm/providers/add_promotion_provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:foodstorm/widgets/material_bottom_bar_widget.dart';
@@ -20,8 +20,8 @@ import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:foodstorm/providers/material_bottom_bar_provider.dart';
 import 'package:foodstorm/providers/cupertino_bottom_bar_provider.dart';
 
-class FoodStorm extends StatelessWidget {
-  const FoodStorm({Key? key}) : super(key: key);
+class FoodStormApp extends StatelessWidget {
+  const FoodStormApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +43,7 @@ class FoodStorm extends StatelessWidget {
           create: (_) => MapProvider(),
         ),
         ChangeNotifierProvider(
-          create: (_) => GridScreenProvider(),
+          create: (_) => FavoriteProvider(),
         ),
         ChangeNotifierProvider(
           create: (_) => AboutCardProvider(),

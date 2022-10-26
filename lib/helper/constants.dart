@@ -34,3 +34,7 @@ class ColorsConst {
   static const transparent = Color(0x00000000);
   static const blackWithOpacity = Color.fromRGBO(0, 0, 0, 0.3);
 }
+
+class KeyConst {
+  static const String favorite = 'favoriteBox';
+}
