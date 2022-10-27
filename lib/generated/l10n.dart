@@ -429,6 +429,56 @@ class S {
       args: [],
     );
   }
+
+  /// `Акция добавлена в избранное.`
+  String get add_to_favorite {
+    return Intl.message(
+      'Акция добавлена в избранное.',
+      name: 'add_to_favorite',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ок`
+  String get ok {
+    return Intl.message(
+      'Ок',
+      name: 'ok',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Акция успешно удалена из избранного.`
+  String get delete_from_favorite {
+    return Intl.message(
+      'Акция успешно удалена из избранного.',
+      name: 'delete_from_favorite',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Уведомление!`
+  String get notification {
+    return Intl.message(
+      'Уведомление!',
+      name: 'notification',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Акция уже в избранном.`
+  String get also_in_favorite {
+    return Intl.message(
+      'Акция уже в избранном.',
+      name: 'also_in_favorite',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

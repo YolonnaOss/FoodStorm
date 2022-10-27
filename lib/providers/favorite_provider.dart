@@ -1,66 +1,181 @@
 import 'dart:io';
-
 import 'package:hive/hive.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:foodstorm/generated/l10n.dart';
 import 'package:foodstorm/helper/constants.dart';
 import 'package:foodstorm/models/favorite_hive_model.dart';
 
 class FavoriteProvider extends ChangeNotifier {
-  addPostToFavorite(
-    String documentName,
-    String uid,
-    String title,
-    String created,
+  Future<void> addPostToFavorite(
+    String documentId,
+    int postID,
+    int cafeID,
+    bool promotion,
+    String message,
+    String createdAt,
     String image,
-    String author,
-    String text,
-    String address,
-    String phone,
+    String cafeName,
+    String cafeLogo,
+    String cafeRating,
+    List<dynamic> tags,
+    bool present,
+    String presentText,
+    int percents,
+    int fullPrice,
+    int finalPrice,
+    String validTo,
     BuildContext context,
-  ) {
-    final favoritePost = HivePostModel()
-      ..documentName = documentName
-      ..uid = uid
-      ..title = title
-      ..created = created
+  ) async {
+    final discount = HiveDiscount()
+      ..present = present
+      ..presentText = presentText
+      ..percents = percents
+      ..fullPrice = fullPrice
+      ..finalPrice = finalPrice
+      ..validTo = validTo;
+
+    final hiveCards = HiveCardModel()
+      ..postID = postID
+      ..cafeID = cafeID
+      ..promotion = promotion
+      ..message = message
+      ..discount = discount
+      ..createdAt = createdAt
       ..image = image
-      ..author = author
-      ..text = text
-      ..address = address
-      ..phone = phone;
+      ..cafeName = cafeName
+      ..cafeLogo = cafeLogo
+      ..cafeRating = cafeRating
+      ..tags = tags;
 
     final box = Boxes.getCardsFromFavorite();
-    if (box.containsKey(documentName)) {
-      return ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            S.of(context).also_in_favorite,
-            style: const TextStyle(
-              fontFamily: FontsConst.regular,
-            ),
-          ),
-        ),
-      );
-    } else {
-      box.put(documentName, favoritePost);
-      box.values;
-      box.keys;
-      Platform.isAndroid
+    if (box.containsKey(documentId)) {
+      return Platform.isAndroid
           ? showDialog(
               context: context,
               builder: (BuildContext context) {
-                return AlertDialog();
-              })
-          : Scaffold.of(context)(
-              SnackBar(
-                content: Text(
-                  S.of(context).add_to_favorite,
-                  style: const TextStyle(
-                    fontFamily: FontsConst.regular,
+                return AlertDialog(
+                  title: Text(
+                    S.of(context).notification,
+                    style: TextStyle(
+                      fontFamily: ConstFont.sBold,
+                    ),
                   ),
-                ),
-              ),
+                  content: Text(
+                    S.of(context).also_in_favorite,
+                    style: TextStyle(
+                      fontFamily: ConstFont.sReg,
+                    ),
+                  ),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: Text(
+                        S.of(context).ok,
+                        style: TextStyle(
+                          color: Theme.of(context).primaryColor,
+                        ),
+                      ),
+                    )
+                  ],
+                );
+              },
+            )
+          : showCupertinoDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return CupertinoAlertDialog(
+                  title: Text(
+                    S.of(context).notification,
+                  ),
+                  content: Text(
+                    S.of(context).also_in_favorite,
+                  ),
+                  actions: [
+                    CupertinoButton(
+                      child: Text(
+                        S.of(context).ok,
+                      ),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                    ),
+                  ],
+                );
+              },
             );
+    } else {
+      box.put(documentId, hiveCards);
+      box.values;
+      box.keys;
+      return Platform.isAndroid
+          ? showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  title: Text(
+                    S.of(context).notification,
+                    style: TextStyle(
+                      fontFamily: ConstFont.sBold,
+                    ),
+                  ),
+                  content: Text(
+                    S.of(context).add_to_favorite,
+                    style: TextStyle(
+                      fontFamily: ConstFont.sReg,
+                    ),
+                  ),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: Text(
+                        S.of(context).ok,
+                        style: TextStyle(
+                          color: Theme.of(context).primaryColor,
+                        ),
+                      ),
+                    )
+                  ],
+                );
+              },
+            )
+          : showCupertinoDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return CupertinoAlertDialog(
+                  title: Text(
+                    S.of(context).notification,
+                  ),
+                  content: Text(
+                    S.of(context).add_to_favorite,
+                  ),
+                  actions: [
+                    CupertinoButton(
+                      child: Text(
+                        S.of(context).ok,
+                      ),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                    ),
+                  ],
+                );
+              },
+            );
+      // Scaffold.of(context)(
+      //     SnackBar(
+      //       content: Text(
+      //         S.of(context).add_to_favorite,
+      //         style: const TextStyle(
+      //           fontFamily: FontsConst.regular,
+      //         ),
+      //       ),
+      //     ),
+      //   );
     }
   }
 
@@ -79,9 +194,18 @@ class FavoriteProvider extends ChangeNotifier {
   //         ),
   //       );
   // }
+
+  bool checkFavoriteCard(String documentId) {
+    final box = Boxes.getCardsFromFavorite();
+    if (box.containsKey(documentId)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
 
 class Boxes {
-  static Box<HiveCardsModel> getCardsFromFavorite() =>
-      Hive.box<HiveCardsModel>(KeyConst.favorite);
+  static Box<HiveCardModel> getCardsFromFavorite() =>
+      Hive.box<HiveCardModel>(KeyConst.favorite);
 }

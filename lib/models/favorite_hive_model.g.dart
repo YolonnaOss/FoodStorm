@@ -6,33 +6,33 @@ part of 'favorite_hive_model.dart';
 // TypeAdapterGenerator
 // **************************************************************************
 
-class HiveCardsModelAdapter extends TypeAdapter<HiveCardsModel> {
+class HiveCardModelAdapter extends TypeAdapter<HiveCardModel> {
   @override
   final int typeId = 0;
 
   @override
-  HiveCardsModel read(BinaryReader reader) {
+  HiveCardModel read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return HiveCardsModel(
+    return HiveCardModel(
       postID: fields[0] as int?,
       cafeID: fields[1] as int?,
       promotion: fields[2] as bool?,
       message: fields[3] as String?,
-      discount: fields[4] as HiveDiscount,
+      discount: fields[4] as HiveDiscount?,
       createdAt: fields[5] as String?,
       image: fields[6] as String?,
       cafeName: fields[7] as String?,
       cafeLogo: fields[8] as String?,
       cafeRating: fields[9] as String?,
-      tags: (fields[10] as List?)?.cast<String?>(),
+      tags: (fields[10] as List?)?.cast<dynamic>(),
     );
   }
 
   @override
-  void write(BinaryWriter writer, HiveCardsModel obj) {
+  void write(BinaryWriter writer, HiveCardModel obj) {
     writer
       ..writeByte(11)
       ..writeByte(0)
@@ -65,7 +65,7 @@ class HiveCardsModelAdapter extends TypeAdapter<HiveCardsModel> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is HiveCardsModelAdapter &&
+      other is HiveCardModelAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

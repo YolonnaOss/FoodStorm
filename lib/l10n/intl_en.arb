@@ -36,5 +36,10 @@
     "about_card_booking": "Забронировать",
     "start_date": "с",
     "end_date": "до",
-    "choise_city": "Выберите город"
+    "choise_city": "Выберите город",
+    "add_to_favorite": "Акция добавлена в избранное.",
+    "ok": "Ок",
+    "delete_from_favorite": "Акция успешно удалена из избранного.",
+    "notification": "Уведомление!",
+    "also_in_favorite": "Акция уже в избранном."
 }

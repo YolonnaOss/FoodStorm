@@ -12,8 +12,9 @@ void main() async {
   await Firebase.initializeApp();
   await Hive.initFlutter();
 
-  await Hive.openBox<HiveCardsModel>(KeyConst.favorite);
-  Hive.registerAdapter(HiveCardsModelAdapter());
+  Hive.openBox<HiveCardModel>(KeyConst.favorite);
+  Hive.registerAdapter(HiveCardModelAdapter());
+  Hive.registerAdapter(HiveDiscountAdapter());
 
   runApp(
     const FoodStormApp(),

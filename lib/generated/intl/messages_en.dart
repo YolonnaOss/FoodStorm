@@ -63,6 +63,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Отправить"),
         "add_promotion_start_date":
             MessageLookupByLibrary.simpleMessage("Дата начала"),
+        "add_to_favorite": MessageLookupByLibrary.simpleMessage(
+            "Акция добавлена в избранное."),
+        "also_in_favorite":
+            MessageLookupByLibrary.simpleMessage("Акция уже в избранном."),
         "app_bar_elev_button":
             MessageLookupByLibrary.simpleMessage("Добавить акцию"),
         "app_bar_text_button": MessageLookupByLibrary.simpleMessage("Тольятти"),
@@ -72,6 +76,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Удалено из избранного"),
         "delete_favorite_text_button":
             MessageLookupByLibrary.simpleMessage("Отменить"),
+        "delete_from_favorite": MessageLookupByLibrary.simpleMessage(
+            "Акция успешно удалена из избранного."),
         "end_date": MessageLookupByLibrary.simpleMessage("до"),
         "favorite_is_clear_button":
             MessageLookupByLibrary.simpleMessage("Перейти к акциям"),
@@ -81,6 +87,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "find_for_promotions":
             MessageLookupByLibrary.simpleMessage("Поиск по акциям"),
         "map": MessageLookupByLibrary.simpleMessage("Карта"),
+        "notification": MessageLookupByLibrary.simpleMessage("Уведомление!"),
+        "ok": MessageLookupByLibrary.simpleMessage("Ок"),
         "promotions": MessageLookupByLibrary.simpleMessage("Акции"),
         "splash_screen_percent": MessageLookupByLibrary.simpleMessage("%"),
         "splash_screen_tittle":

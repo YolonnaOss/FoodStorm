@@ -3,7 +3,7 @@ import 'package:hive/hive.dart';
 part 'favorite_hive_model.g.dart';
 
 @HiveType(typeId: 0)
-class HiveCardsModel extends HiveObject {
+class HiveCardModel extends HiveObject {
   @HiveField(0)
   late int? postID;
 
@@ -17,7 +17,7 @@ class HiveCardsModel extends HiveObject {
   late String? message;
 
   @HiveField(4)
-  late HiveDiscount discount;
+  late HiveDiscount? discount;
 
   @HiveField(5)
   late String? createdAt;
@@ -35,14 +35,14 @@ class HiveCardsModel extends HiveObject {
   late String? cafeRating;
 
   @HiveField(10)
-  late List<String?>? tags;
+  late List<dynamic?>? tags;
 
-  HiveCardsModel({
+  HiveCardModel({
     this.postID,
     this.cafeID,
     this.promotion,
     this.message,
-    required this.discount,
+    this.discount,
     this.createdAt,
     this.image,
     this.cafeName,
