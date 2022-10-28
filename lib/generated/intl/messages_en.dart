@@ -70,8 +70,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "app_bar_elev_button":
             MessageLookupByLibrary.simpleMessage("Добавить акцию"),
         "app_bar_text_button": MessageLookupByLibrary.simpleMessage("Тольятти"),
+        "attention": MessageLookupByLibrary.simpleMessage("Внимание!"),
         "choise_city": MessageLookupByLibrary.simpleMessage("Выберите город"),
         "clear": MessageLookupByLibrary.simpleMessage("Очистить"),
+        "clear_favorite_text": MessageLookupByLibrary.simpleMessage(
+            "Очистить весь список избранного?"),
         "delete_favorite_text":
             MessageLookupByLibrary.simpleMessage("Удалено из избранного"),
         "delete_favorite_text_button":
@@ -87,12 +90,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "find_for_promotions":
             MessageLookupByLibrary.simpleMessage("Поиск по акциям"),
         "map": MessageLookupByLibrary.simpleMessage("Карта"),
+        "no": MessageLookupByLibrary.simpleMessage("Нет"),
         "notification": MessageLookupByLibrary.simpleMessage("Уведомление!"),
         "ok": MessageLookupByLibrary.simpleMessage("Ок"),
         "promotions": MessageLookupByLibrary.simpleMessage("Акции"),
         "splash_screen_percent": MessageLookupByLibrary.simpleMessage("%"),
         "splash_screen_tittle":
             MessageLookupByLibrary.simpleMessage("Food Storm"),
-        "start_date": MessageLookupByLibrary.simpleMessage("с")
+        "start_date": MessageLookupByLibrary.simpleMessage("с"),
+        "yes": MessageLookupByLibrary.simpleMessage("Да")
       };
 }

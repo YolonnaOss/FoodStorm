@@ -46,7 +46,8 @@ class FavoriteProvider extends ChangeNotifier {
       ..cafeName = cafeName
       ..cafeLogo = cafeLogo
       ..cafeRating = cafeRating
-      ..tags = tags;
+      ..tags = tags
+      ..documentID = documentId;
 
     final box = Boxes.getCardsFromFavorite();
     if (box.containsKey(documentId)) {
@@ -76,6 +77,7 @@ class FavoriteProvider extends ChangeNotifier {
                         S.of(context).ok,
                         style: TextStyle(
                           color: Theme.of(context).primaryColor,
+                          fontFamily: ConstFont.sSemB,
                         ),
                       ),
                     )
@@ -89,14 +91,23 @@ class FavoriteProvider extends ChangeNotifier {
                 return CupertinoAlertDialog(
                   title: Text(
                     S.of(context).notification,
+                    style: TextStyle(
+                      fontFamily: ConstFont.sBold,
+                    ),
                   ),
                   content: Text(
                     S.of(context).also_in_favorite,
+                    style: TextStyle(
+                      fontFamily: ConstFont.sReg,
+                    ),
                   ),
                   actions: [
                     CupertinoButton(
                       child: Text(
                         S.of(context).ok,
+                        style: TextStyle(
+                          fontFamily: ConstFont.sSemB,
+                        ),
                       ),
                       onPressed: () {
                         Navigator.pop(context);
@@ -136,6 +147,7 @@ class FavoriteProvider extends ChangeNotifier {
                         S.of(context).ok,
                         style: TextStyle(
                           color: Theme.of(context).primaryColor,
+                          fontFamily: ConstFont.sSemB,
                         ),
                       ),
                     )
@@ -149,14 +161,23 @@ class FavoriteProvider extends ChangeNotifier {
                 return CupertinoAlertDialog(
                   title: Text(
                     S.of(context).notification,
+                    style: TextStyle(
+                      fontFamily: ConstFont.sBold,
+                    ),
                   ),
                   content: Text(
                     S.of(context).add_to_favorite,
+                    style: TextStyle(
+                      fontFamily: ConstFont.sReg,
+                    ),
                   ),
                   actions: [
                     CupertinoButton(
                       child: Text(
                         S.of(context).ok,
+                        style: TextStyle(
+                          fontFamily: ConstFont.sSemB,
+                        ),
                       ),
                       onPressed: () {
                         Navigator.pop(context);
@@ -166,34 +187,109 @@ class FavoriteProvider extends ChangeNotifier {
                 );
               },
             );
-      // Scaffold.of(context)(
-      //     SnackBar(
-      //       content: Text(
-      //         S.of(context).add_to_favorite,
-      //         style: const TextStyle(
-      //           fontFamily: FontsConst.regular,
-      //         ),
-      //       ),
-      //     ),
-      //   );
     }
   }
 
-  // Future<void> deletePost(String documentName, BuildContext context) async {
-  //   final box = Hive.box<HivePostModel>(KeysConst.favorite);
-  //   await box.delete(documentName).whenComplete(
-  //         () => ScaffoldMessenger.of(context).showSnackBar(
-  //           SnackBar(
-  //             content: Text(
-  //               S.of(context).delete_from_favorite,
-  //               style: const TextStyle(
-  //                 fontFamily: FontsConst.regular,
-  //               ),
-  //             ),
-  //           ),
-  //         ),
-  //       );
-  // }
+  Future<void> clearFavorite(
+    Box<HiveCardModel> box,
+    BuildContext context,
+  ) async {
+    Platform.isAndroid
+        ? showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text(
+                  S.of(context).attention,
+                  style: TextStyle(
+                    fontFamily: ConstFont.sBold,
+                  ),
+                ),
+                content: Text(
+                  S.of(context).clear_favorite_text,
+                  style: TextStyle(
+                    fontFamily: ConstFont.sReg,
+                  ),
+                ),
+                actions: [
+                  TextButton(
+                    onPressed: () async {
+                      await box.clear().whenComplete(
+                            () => Navigator.pop(context),
+                          );
+                    },
+                    child: Text(
+                      S.of(context).yes,
+                      style: TextStyle(
+                        color: Theme.of(context).errorColor,
+                        fontFamily: ConstFont.sSemB,
+                      ),
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text(
+                      S.of(context).no,
+                      style: TextStyle(
+                        color: Theme.of(context).primaryColor,
+                        fontFamily: ConstFont.sSemB,
+                      ),
+                    ),
+                  ),
+                ],
+              );
+            },
+          )
+        : showCupertinoDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return CupertinoAlertDialog(
+                title: Text(
+                  S.of(context).attention,
+                  style: TextStyle(
+                    fontFamily: ConstFont.sBold,
+                  ),
+                ),
+                content: Text(
+                  S.of(context).clear_favorite_text,
+                  style: TextStyle(
+                    fontFamily: ConstFont.sReg,
+                  ),
+                ),
+                actions: [
+                  CupertinoButton(
+                    child: Text(
+                      S.of(context).yes,
+                      style: TextStyle(
+                        color: Theme.of(context).errorColor,
+                        fontFamily: ConstFont.sSemB,
+                      ),
+                    ),
+                    onPressed: () async {
+                      await box.clear().whenComplete(
+                            () => Navigator.pop(context),
+                          );
+                    },
+                  ),
+                  CupertinoButton(
+                    child: Text(
+                      S.of(context).no,
+                      style: TextStyle(
+                        color: Theme.of(context).primaryColorDark,
+                        fontFamily: ConstFont.sSemB,
+                      ),
+                    ),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+                ],
+              );
+            },
+          );
+  }
 
   bool checkFavoriteCard(String documentId) {
     final box = Boxes.getCardsFromFavorite();
@@ -202,6 +298,14 @@ class FavoriteProvider extends ChangeNotifier {
     } else {
       return false;
     }
+  }
+
+  Future<void> deleteCard(
+    BuildContext context,
+    String documentID,
+    Box<HiveCardModel> box,
+  ) async {
+    await box.delete(documentID);
   }
 }
 

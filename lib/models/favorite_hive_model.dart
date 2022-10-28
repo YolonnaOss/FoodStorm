@@ -35,7 +35,10 @@ class HiveCardModel extends HiveObject {
   late String? cafeRating;
 
   @HiveField(10)
-  late List<dynamic?>? tags;
+  late List<dynamic>? tags;
+
+  @HiveField(11)
+  late String? documentID;
 
   HiveCardModel({
     this.postID,
@@ -49,6 +52,7 @@ class HiveCardModel extends HiveObject {
     this.cafeLogo,
     this.cafeRating,
     this.tags,
+    this.documentID,
   });
 }
 

@@ -1,15 +1,23 @@
+import '../generated/l10n.dart';
+import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:foodstorm/helper/constants.dart';
 import 'package:foodstorm/models/favorite_hive_model.dart';
+import 'package:foodstorm/providers/favorite_provider.dart';
 import 'package:foodstorm/helper/icons/storm_icons_icons.dart';
-import 'package:intl/intl.dart';
-
-import '../generated/l10n.dart';
 
 class FavoriteGridWidget extends StatelessWidget {
-  const FavoriteGridWidget({Key? key, required this.list}) : super(key: key);
+  const FavoriteGridWidget({
+    Key? key,
+    required this.list,
+    required this.box,
+    required this.favoriteProvider,
+  }) : super(key: key);
 
   final List<HiveCardModel> list;
+  final Box<HiveCardModel> box;
+  final FavoriteProvider favoriteProvider;
 
   @override
   Widget build(BuildContext context) {
@@ -69,10 +77,17 @@ class FavoriteGridWidget extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const Padding(
-                      padding: EdgeInsets.only(right: 10.0),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 10.0),
                       child: InkWell(
-                        child: Icon(
+                        onTap: () async {
+                          await favoriteProvider.deleteCard(
+                            context,
+                            list[index].documentID!,
+                            box,
+                          );
+                        },
+                        child: const Icon(
                           StormIcons.heart_white,
                           color: ColorsConst.white,
                           size: 28.0,

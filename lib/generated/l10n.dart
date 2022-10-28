@@ -479,6 +479,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Внимание!`
+  String get attention {
+    return Intl.message(
+      'Внимание!',
+      name: 'attention',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Очистить весь список избранного?`
+  String get clear_favorite_text {
+    return Intl.message(
+      'Очистить весь список избранного?',
+      name: 'clear_favorite_text',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Да`
+  String get yes {
+    return Intl.message(
+      'Да',
+      name: 'yes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Нет`
+  String get no {
+    return Intl.message(
+      'Нет',
+      name: 'no',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

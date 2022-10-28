@@ -41,5 +41,9 @@
   "ok": "Ок",
   "delete_from_favorite": "Акция успешно удалена из избранного.",
   "notification": "Уведомление!",
-  "also_in_favorite": "Акция уже в избранном."
+  "also_in_favorite": "Акция уже в избранном.",
+  "attention": "Внимание!",
+  "clear_favorite_text": "Очистить весь список избранного?",
+  "yes": "Да",
+  "no": "Нет"
 }

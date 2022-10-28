@@ -28,13 +28,14 @@ class HiveCardModelAdapter extends TypeAdapter<HiveCardModel> {
       cafeLogo: fields[8] as String?,
       cafeRating: fields[9] as String?,
       tags: (fields[10] as List?)?.cast<dynamic>(),
+      documentID: fields[11] as String?,
     );
   }
 
   @override
   void write(BinaryWriter writer, HiveCardModel obj) {
     writer
-      ..writeByte(11)
+      ..writeByte(12)
       ..writeByte(0)
       ..write(obj.postID)
       ..writeByte(1)
@@ -56,7 +57,9 @@ class HiveCardModelAdapter extends TypeAdapter<HiveCardModel> {
       ..writeByte(9)
       ..write(obj.cafeRating)
       ..writeByte(10)
-      ..write(obj.tags);
+      ..write(obj.tags)
+      ..writeByte(11)
+      ..write(obj.documentID);
   }
 
   @override

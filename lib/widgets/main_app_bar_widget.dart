@@ -162,7 +162,7 @@ class _MainAppBarWidgetState extends State<MainAppBarWidget> {
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                primary: Theme.of(context).cardColor,
+                backgroundColor: Theme.of(context).cardColor,
                 padding: const EdgeInsets.symmetric(
                   horizontal: 10.0,
                 ),
