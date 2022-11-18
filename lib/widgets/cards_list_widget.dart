@@ -1,3 +1,4 @@
+import 'package:foodstorm/providers/promotion_provider.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -18,12 +19,18 @@ class CardsListWidget extends StatefulWidget {
 class _CardsListWidgetState extends State<CardsListWidget> {
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<FavoriteProvider>(context);
+    final favoriteProvider = Provider.of<FavoriteProvider>(context);
+    final promotionProvider = Provider.of<PromotionProvider>(context);
     final firestore = FirebaseFirestore.instance.collection('cards');
+    final filteringFirestore = FirebaseFirestore.instance
+        .collection('cards')
+        .where('tags', arrayContains: promotionProvider.sort);
     return Expanded(
       flex: 1,
       child: StreamBuilder(
-        stream: firestore.snapshots(),
+        stream: promotionProvider.sort.isEmpty
+            ? firestore.snapshots()
+            : filteringFirestore.snapshots(),
         builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasData) {
             final cards = snapshot.data!.docs;
@@ -70,6 +77,9 @@ class _CardsListWidgetState extends State<CardsListWidget> {
                                   children: [
                                     Image.network(
                                       cards[index]['image'],
+                                      errorBuilder:
+                                          ((context, error, stackTrace) =>
+                                              Container()),
                                       width: double.infinity,
                                       fit: BoxFit.fitWidth,
                                     ),
@@ -234,7 +244,7 @@ class _CardsListWidgetState extends State<CardsListWidget> {
                                                             .primaryColor
                                                             .withOpacity(0.15),
                                                         onTap: () async {
-                                                          await provider
+                                                          await favoriteProvider
                                                               .addPostToFavorite(
                                                             cards[index].id,
                                                             cards[index]
@@ -299,9 +309,10 @@ class _CardsListWidgetState extends State<CardsListWidget> {
                                                           width: 45.0,
                                                           height: 45.0,
                                                           child: Icon(
-                                                            provider.checkFavoriteCard(
-                                                                    cards[index]
-                                                                        .id)
+                                                            favoriteProvider
+                                                                    .checkFavoriteCard(
+                                                                        cards[index]
+                                                                            .id)
                                                                 ? StormIcons
                                                                     .heart_fill
                                                                 : StormIcons

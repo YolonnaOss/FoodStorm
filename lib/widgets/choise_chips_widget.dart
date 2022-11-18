@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:foodstorm/helper/constants.dart';
 import 'package:foodstorm/helper/task_list.dart';
-import 'package:foodstorm/providers/main_page_provider.dart';
+import 'package:foodstorm/providers/promotion_provider.dart';
 
 class ChoiseChipsWidget extends StatefulWidget {
   const ChoiseChipsWidget({Key? key}) : super(key: key);
@@ -12,10 +12,10 @@ class ChoiseChipsWidget extends StatefulWidget {
 }
 
 class _ChoiseChipsWidgetState extends State<ChoiseChipsWidget> {
-  int? _value = 0;
+  int _value = 0;
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<MainPageProvider>(context);
+    final provider = Provider.of<PromotionProvider>(context);
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 4.0),
       width: double.infinity,
@@ -47,8 +47,7 @@ class _ChoiseChipsWidgetState extends State<ChoiseChipsWidget> {
             selected: _value == index ? true : false,
             onSelected: (_) {
               setState(() {
-                if (index == 1) provider.changeSort(chipsText[index]);
-                if (index == 2) provider.changeSort(chipsText[index]);
+                provider.changeSort(chipsText[index]);
                 _value = index;
               });
             },

@@ -1,10 +1,11 @@
 import '../generated/l10n.dart';
+import 'package:sizer/sizer.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:foodstorm/helper/constants.dart';
 import 'package:foodstorm/widgets/button_widget.dart';
+import 'package:foodstorm/providers/promotion_provider.dart';
 import 'package:foodstorm/helper/icons/storm_icons_icons.dart';
-
-enum Cities { togliatty, samara }
 
 class MainAppBarWidget extends StatefulWidget {
   const MainAppBarWidget({Key? key}) : super(key: key);
@@ -16,8 +17,7 @@ class MainAppBarWidget extends StatefulWidget {
 class _MainAppBarWidgetState extends State<MainAppBarWidget> {
   @override
   Widget build(BuildContext context) {
-    Cities? _city = Cities.togliatty;
-
+    final promotionProvider = Provider.of<PromotionProvider>(context);
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 3.0),
       child: SizedBox(
@@ -47,94 +47,143 @@ class _MainAppBarWidgetState extends State<MainAppBarWidget> {
                       ),
                     ),
                     context: context,
-                    builder: (context) => StatefulBuilder(
-                      builder: (context, state) {
-                        return Container(
-                          color: Theme.of(context).highlightColor,
-                          height: 250.0,
-                          width: double.infinity,
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                              vertical: 30.0,
-                              horizontal: 16.0,
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Text(
-                                  S.of(context).choise_city,
-                                  style: TextStyle(
-                                    fontSize: 21.0,
-                                    color: Colors.black,
-                                    fontFamily: ConstFont.sBold,
-                                  ),
+                    builder: (context) => Wrap(
+                      children: [
+                        StatefulBuilder(
+                          builder: (context, state) {
+                            return Container(
+                              color: Theme.of(context).highlightColor,
+                              width: double.infinity,
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 30.0,
+                                  horizontal: 16.0,
                                 ),
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
+                                child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
                                   children: [
-                                    Row(
+                                    Text(
+                                      S.of(context).choise_city,
+                                      style: TextStyle(
+                                        fontSize: 21.0,
+                                        color: Colors.black,
+                                        fontFamily: ConstFont.sBold,
+                                      ),
+                                    ),
+                                    Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
-                                        SizedBox(
-                                          width: 25.0,
-                                          height: 25.0,
-                                          child: Radio(
-                                            activeColor:
-                                                Theme.of(context).primaryColor,
-                                            value: Cities.togliatty,
-                                            groupValue: _city,
-                                            onChanged: (Cities? value) {
-                                              state(() {
-                                                _city = value;
-                                              });
-                                            },
+                                        const SizedBox(
+                                          height: 20.0,
+                                        ),
+                                        InkWell(
+                                          onTap: () {
+                                            state(() {
+                                              promotionProvider.changeCity(
+                                                  Cities.togliatty, context);
+                                            });
+                                          },
+                                          child: Row(
+                                            children: [
+                                              SizedBox(
+                                                width: 25.0,
+                                                height: 25.0,
+                                                child: Radio(
+                                                  activeColor: Theme.of(context)
+                                                      .primaryColor,
+                                                  value: Cities.togliatty,
+                                                  groupValue:
+                                                      promotionProvider.city,
+                                                  onChanged: (Cities? value) {
+                                                    state(() {
+                                                      promotionProvider
+                                                          .changeCity(
+                                                              value, context);
+                                                    });
+                                                  },
+                                                ),
+                                              ),
+                                              const SizedBox(
+                                                width: 10.0,
+                                              ),
+                                              Text(
+                                                S.of(context).togliatty,
+                                                style: TextStyle(
+                                                  fontFamily: ConstFont.sReg,
+                                                  fontSize: 12.sp,
+                                                ),
+                                              ),
+                                            ],
                                           ),
                                         ),
-                                        const Text('Тольятти'),
+                                        const SizedBox(
+                                          height: 15.0,
+                                        ),
+                                        InkWell(
+                                          onTap: (() {
+                                            state(() {
+                                              promotionProvider.changeCity(
+                                                  Cities.samara, context);
+                                            });
+                                          }),
+                                          child: Row(
+                                            children: [
+                                              SizedBox(
+                                                width: 25.0,
+                                                height: 25.0,
+                                                child: Radio(
+                                                  activeColor: Theme.of(context)
+                                                      .primaryColor,
+                                                  value: Cities.samara,
+                                                  groupValue:
+                                                      promotionProvider.city,
+                                                  onChanged: (Cities? value) {
+                                                    state(() {
+                                                      promotionProvider
+                                                          .changeCity(
+                                                              value, context);
+                                                    });
+                                                  },
+                                                ),
+                                              ),
+                                              const SizedBox(
+                                                width: 10.0,
+                                              ),
+                                              Text(
+                                                S.of(context).samara,
+                                                style: TextStyle(
+                                                  fontFamily: ConstFont.sReg,
+                                                  fontSize: 12.sp,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
                                       ],
                                     ),
                                     const SizedBox(
-                                      height: 10.0,
+                                      height: 30.0,
                                     ),
-                                    Row(
-                                      children: [
-                                        SizedBox(
-                                          width: 25.0,
-                                          height: 25.0,
-                                          child: Radio(
-                                            activeColor:
-                                                Theme.of(context).primaryColor,
-                                            value: Cities.samara,
-                                            groupValue: _city,
-                                            onChanged: (Cities? value) {
-                                              state(() {
-                                                _city = value;
-                                              });
-                                            },
-                                          ),
-                                        ),
-                                        const Text(
-                                          'Самара',
-                                          style: TextStyle(),
-                                        ),
-                                      ],
+                                    ButtonWidget(
+                                      state: false,
+                                      accept: true,
+                                      buttonText: 'Готово',
+                                      sendFunc: () {
+                                        Navigator.pop(context);
+                                      },
                                     ),
                                   ],
                                 ),
-                                ButtonWidget(
-                                  state: false,
-                                  accept: true,
-                                  buttonText: 'Готово',
-                                  sendFunc: () {
-                                    Navigator.pop(context);
-                                  },
-                                ),
-                              ],
-                            ),
-                          ),
-                        );
-                      },
+                              ),
+                            );
+                          },
+                        ),
+                      ],
                     ),
                   );
                 },
@@ -144,7 +193,9 @@ class _MainAppBarWidgetState extends State<MainAppBarWidget> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      S.of(context).app_bar_text_button,
+                      promotionProvider.city == Cities.togliatty
+                          ? S.of(context).togliatty
+                          : S.of(context).samara,
                       style: TextStyle(
                         color: Theme.of(context).shadowColor,
                         fontSize: 15.0,

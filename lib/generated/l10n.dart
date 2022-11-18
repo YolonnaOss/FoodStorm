@@ -519,6 +519,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Тольятти`
+  String get togliatty {
+    return Intl.message(
+      'Тольятти',
+      name: 'togliatty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Самара`
+  String get samara {
+    return Intl.message(
+      'Самара',
+      name: 'samara',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -8,10 +8,10 @@ import 'package:foodstorm/helper/constants.dart';
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:foodstorm/providers/map_provider.dart';
 import 'package:foodstorm/providers/app_bar_provider.dart';
-import 'package:foodstorm/providers/main_page_provider.dart';
+import 'package:foodstorm/providers/favorite_provider.dart';
 import 'package:foodstorm/screens/add_promotion_screen.dart';
 import 'package:foodstorm/providers/about_card_provider.dart';
-import 'package:foodstorm/providers/favorite_provider.dart';
+import 'package:foodstorm/providers/promotion_provider.dart';
 import 'package:foodstorm/providers/add_promotion_provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:foodstorm/widgets/material_bottom_bar_widget.dart';
@@ -37,7 +37,7 @@ class FoodStormApp extends StatelessWidget {
           create: (_) => AppBarProvider(),
         ),
         ChangeNotifierProvider(
-          create: (_) => MainPageProvider(),
+          create: (_) => PromotionProvider(),
         ),
         ChangeNotifierProvider(
           create: (_) => MapProvider(),

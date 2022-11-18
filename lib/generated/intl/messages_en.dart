@@ -94,10 +94,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "notification": MessageLookupByLibrary.simpleMessage("Уведомление!"),
         "ok": MessageLookupByLibrary.simpleMessage("Ок"),
         "promotions": MessageLookupByLibrary.simpleMessage("Акции"),
+        "samara": MessageLookupByLibrary.simpleMessage("Самара"),
         "splash_screen_percent": MessageLookupByLibrary.simpleMessage("%"),
         "splash_screen_tittle":
             MessageLookupByLibrary.simpleMessage("Food Storm"),
         "start_date": MessageLookupByLibrary.simpleMessage("с"),
+        "togliatty": MessageLookupByLibrary.simpleMessage("Тольятти"),
         "yes": MessageLookupByLibrary.simpleMessage("Да")
       };
 }
