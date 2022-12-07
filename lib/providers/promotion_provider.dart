@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:foodstorm/generated/l10n.dart';
 
 enum Cities { togliatty, samara }
 

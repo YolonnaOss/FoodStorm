@@ -1,7 +1,5 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:foodstorm/providers/cupertino_bottom_bar_provider.dart';
-import 'package:foodstorm/providers/material_bottom_bar_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:foodstorm/generated/l10n.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -9,6 +7,8 @@ import 'package:foodstorm/helper/constants.dart';
 import 'package:foodstorm/models/favorite_hive_model.dart';
 import 'package:foodstorm/providers/favorite_provider.dart';
 import 'package:foodstorm/widgets/favorite_grid_widget.dart';
+import 'package:foodstorm/providers/material_bottom_bar_provider.dart';
+import 'package:foodstorm/providers/cupertino_bottom_bar_provider.dart';
 
 class FavoriteScreen extends StatelessWidget {
   const FavoriteScreen({Key? key}) : super(key: key);

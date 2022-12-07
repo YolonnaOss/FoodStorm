@@ -1,4 +1,3 @@
-import 'package:foodstorm/providers/promotion_provider.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +6,7 @@ import 'package:foodstorm/generated/l10n.dart';
 import 'package:foodstorm/helper/constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:foodstorm/providers/favorite_provider.dart';
+import 'package:foodstorm/providers/promotion_provider.dart';
 import 'package:foodstorm/helper/icons/storm_icons_icons.dart';
 
 class CardsListWidget extends StatefulWidget {

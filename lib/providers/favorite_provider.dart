@@ -51,6 +51,7 @@ class FavoriteProvider extends ChangeNotifier {
 
     final box = Boxes.getCardsFromFavorite();
     if (box.containsKey(documentId)) {
+      notifyListeners();
       return Platform.isAndroid
           ? showDialog(
               context: context,
@@ -121,6 +122,7 @@ class FavoriteProvider extends ChangeNotifier {
       box.put(documentId, hiveCards);
       box.values;
       box.keys;
+      notifyListeners();
       return Platform.isAndroid
           ? showDialog(
               context: context,
